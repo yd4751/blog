@@ -1,4 +1,4 @@
-# blog
+# BLOG
 我的博客
 
 #
@@ -11,3 +11,7 @@
 [linux相关](code/linux)
 #
 [windows相关](code/windows)
+#
+[github相关](code/github)
+#
+[日常笔记](code/note)
