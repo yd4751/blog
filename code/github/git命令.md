@@ -1,4 +1,4 @@
-![预览](img/a6w5y-lnvzd.png)
+![预览](https://github.com/yd4751/blog/blob/main/img/a6w5y-lnvzd.png)
 # 配置
 ### git config
 ``` shell
