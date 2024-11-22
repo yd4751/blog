@@ -77,3 +77,32 @@ npm run build
 ![预览](https://github.com/yd4751/blog/blob/main/img/1.png)
 ![预览](https://github.com/yd4751/blog/blob/main/img/2.png)
 ![预览](https://github.com/yd4751/blog/blob/main/img/3.png)
+
+# vue示例
+``` html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.26/vue.global.min.js"></script>
+</head>
+<body>
+<div id="hello-vue" class="demo">
+  {{ message }}
+</div>
+
+<script>
+const HelloVueApp = {
+  data() {
+    return {
+      message: 'Hello Vue!!'
+    }
+  }
+}
+
+Vue.createApp(HelloVueApp).mount('#hello-vue')
+</script>
+</body>
+</html>
+```
