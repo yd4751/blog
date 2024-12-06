@@ -329,6 +329,7 @@ const (
 
 <blockquote><p>注意：Go 没有三目运算符，所以不支持 <strong>?:</strong> 形式的条件判断。</p></blockquote>
 </html>
+
 ``` go
 if x > 0 {
     fmt.Println("x is positive")
@@ -842,22 +843,22 @@ https://www.cnblogs.com/dibtp/p/18083986
 
 
 # 问题记录
-* GOPATH目录下有go.mod时,子目录下工程执行go mod tidy会提示go: go.mod file not found in current directory or any parent directory 
+* GOPATH目录下有go.mod时,子目录下工程执行go mod tidy会提示go: go.mod file not found in current directory or any parent directory  
 解决方法:
 删除该go.mod
 
-* binary.Write注意事项 
-1、必须使用指定长度类型，例如int是不允许的，必须int32等 
+* binary.Write注意事项  
+1、必须使用指定长度类型，例如int是不允许的，必须int32等  
 2、结构体unsafe.Sizeof是会进行内存对齐的，但是binary.Write结果是无内存对齐的，所以写入时需要保存长度信息 
 
-* import "C"提示找不到go file 
-开启cgo 
+* import "C"提示找不到go file  
+开启cgo  
 go env -w CGO_ENABLED=1 
 
-* go run a.go只会查找a.go,涉及多文件时命令: 
+* go run a.go只会查找a.go,涉及多文件时命令:  
 go run a.go b.go c.go ... 
 
-* GOPROXY代理 
-gov1.13默认为https://proxy.golang.org 
+* GOPROXY代理  
+gov1.13默认为https://proxy.golang.org  
 国内建议
 go env -w GOPROXY=https://goproxy.cn,direct
