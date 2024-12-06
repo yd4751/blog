@@ -156,6 +156,24 @@ const k = 10, 20 // 声明两个整型常量 k，并初始化
 const l, m = 10, 20 // 声明两个整型常量 l 和 m，并初始化
 ```
 
+# 变量作用域
+* 函数内定义的变量称为局部变量
+* 函数外定义的变量称为全局变量,全局变量可以在整个包甚至外部包（被导出后）使用
+* 函数定义中的变量称为形式参数
+
+# 变量默认值
+在go语言中，任何类型在声明后没有赋值的情况下，都对应一个零值。
+
+* 整形如int8、byte、int16、uint、uintprt等，默认值为0。
+* 浮点类型如float32、float64，默认值为0。
+* 布尔类型bool的默认值为false。
+* 复数类型如complex64、complex128，默认值为0+0i。
+* 字符串string的默认值为""。
+* 错误类型error的默认值为nil。
+* 对于一些复合类型，如指针、切片、字典、通道、接口，默认值为nil。而数组的默认值要根据其数据类型来确定。
+例如：var a [4]int，其默认值为[0 0 0 0]。
+
+
 # 赋值操作符 := 
 var a int =10 可简写为 a := 10
 var a,b int =10,10 可简写为 a,b := 10,10
@@ -302,8 +320,8 @@ const (
 <html>
 <table class="reference">
 <tbody><tr><th style="width:35%">语句</th><th>描述</th></tr>
-<tr><td><a title="Go if 语句">if 语句</a></td><td><b>if </b> 由一个布尔表达式后紧跟一个或多个语句组成。</td></tr>
-<tr><td><a title="Go if...else 语句">if...else </a></td><td><b>if 语句</b> 后可以使用可选的 <b>else 语句</b>, else 语句中的表达式在布尔表达式为 false 时执行。</td></tr>
+<tr><td><a title="Go if 语句">if</a></td><td><b>if </b> 由一个布尔表达式后紧跟一个或多个语句组成。</td></tr>
+<tr><td><a title="Go if...else 语句">if...else </a></td><td><b>if</b> 后可以使用可选的 <b>else </b>, else 语句中的表达式在布尔表达式为 false 时执行。</td></tr>
 <tr><td><a title="Go if 嵌套语句"> if </a></td><td>你可以在 <b>if</b> 或 <b>else if</b> 语句中嵌入一个或多个 <b>if</b> 或 <b>else if</b> 语句。</td></tr>
 <tr><td><a title="Go switch 语句">switch </a></td><td><b>switch</b> 语句用于基于不同条件执行不同动作。</td></tr>
 <tr><td><a title="Go select 语句">select </a></td><td><b>select</b> 语句类似于 <b>switch</b> 语句，但是select会随机执行一个可运行的case。如果没有case可运行，它将阻塞，直到有case可运行。</td></tr>
@@ -311,6 +329,13 @@ const (
 
 <blockquote><p>注意：Go 没有三目运算符，所以不支持 <strong>?:</strong> 形式的条件判断。</p></blockquote>
 </html>
+``` go
+if x > 0 {
+    fmt.Println("x is positive")
+} else if x < 0 {
+    fmt.Println("x is negative")
+}
+```
 
 # 循环语句
 <html>
@@ -364,3 +389,470 @@ const (
 <hr />
 </html>
 
+``` go
+// 
+for i := 0; i < 10; i++ {
+    if i == 5 {
+        break // 跳出当前循环
+    }else{
+        continue // 跳过当前循环的剩余语句，然后继续进行下一轮循环
+    }
+    fmt.Println(i)
+}
+//
+for true{
+    fmt.Println("无限循环")
+}
+```
+
+# 函数
+``` go
+//
+func swap(x string) string {
+   return x
+}
+//
+func swap(x string, y string) (string, string) {
+   return y, x
+}
+//
+func swap(x, y string) (string, string) {
+   return y, x
+}
+//调用
+a, b := swap("Google", "Runoob")
+```
+
+# 闭包函数
+``` go
+package main
+
+import "fmt"
+
+func getSequence() func() int {
+   i:=0
+   return func() int {
+      i+=1
+     return i  
+   }
+}
+
+func main(){
+   /* nextNumber 为一个函数，函数 i 为 0 */
+   nextNumber := getSequence()  
+
+   /* 调用 nextNumber 函数，i 变量自增 1 并返回 */
+   fmt.Println(nextNumber())
+   fmt.Println(nextNumber())
+   fmt.Println(nextNumber())
+   
+   /* 创建新的函数 nextNumber1，并查看结果 */
+   nextNumber1 := getSequence()  
+   fmt.Println(nextNumber1())
+   fmt.Println(nextNumber1())
+}
+```
+
+# 函数参数
+* 参数分为值参数和引用参数*
+* 默认情况下，Go 语言使用的是值传递，即在调用过程中不会影响到实际参数
+``` go
+/* 值*/
+func swap(x int, y int)
+/* 引用*/
+func swap(x *int, y *int)
+```
+
+# 类型转换
+* go不支持隐式转换类型
+``` go
+// 整型转浮点
+var a int = 10
+var b float64 = float64(a)
+
+// 字符串转整型
+//注意，strconv.Atoi 函数返回两个值，第一个是转换后的整型值，第二个是可能发生的错误，我们可以使用空白标识符 _ 来忽略这个错误
+var str string = "10"
+var num int
+num, _ = strconv.Atoi(str)
+
+// 整形转字符串
+num := 123
+str := strconv.Itoa(num)
+
+// 字符串转浮点
+str := "3.14"
+num, _ := strconv.ParseFloat(str, 64)
+
+// 浮点转字符串
+num := 3.14
+str := strconv.FormatFloat(num, 'f', 2, 64)
+
+//接口类型转换:类型断言、类型转换
+
+// 类型断言:用于将接口类型转换为指定类型 语法:value.(type) 或 value.(T)
+var i interface{} = "Hello, World"
+str, ok := i.(string)
+
+// 类型转换:用于将一个接口类型的值转换为另一个接口类型 语法:T(value)
+// 定义一个接口 Writer
+type Writer interface {
+    Write([]byte) (int, error)
+}
+// 实现 Writer 接口的结构体 StringWriter
+type StringWriter struct {
+    str string
+}
+// 实现 Write 方法
+func (sw *StringWriter) Write(data []byte) (int, error) {
+    sw.str += string(data)
+    return len(data), nil
+}
+// 创建一个 StringWriter 实例并赋值给 Writer 接口变量
+var w Writer = &StringWriter{}
+// 将 Writer 接口类型转换为 StringWriter 类型
+sw := w.(*StringWriter)
+// 修改 StringWriter 的字段
+sw.str = "Hello, World"
+// 打印 StringWriter 的字段值
+fmt.Println(sw.str)
+```
+# 错误处理
+* 错误处理采用显式返回错误的方式，而非传统的异常处理机制
+主要围绕以下机制展开:
+* error 接口：标准的错误表示。
+``` go
+//标准库定义了一个 error 接口，任何实现了该接口的类型都可以作为错误值。
+type error interface {
+    Error() string
+}
+//
+func Sqrt(f float64) (float64, error) {
+    if f < 0 {
+        return 0, errors.New("math: square root of negative number")
+    }
+    // 实现
+}
+```
+* 显式返回值：通过函数的返回值返回错误
+``` go
+func divide(a, b int) (int, error) {
+        if b == 0 {
+                return 0, errors.New("division by zero")
+        }
+        return a / b, nil
+}
+```
+* 自定义错误：可以通过标准库或自定义的方式创建错误
+``` go
+type DivideError struct {
+        Dividend int
+        Divisor  int
+}
+
+func (e *DivideError) Error() string {
+        return fmt.Sprintf("cannot divide %d by %d", e.Dividend, e.Divisor)
+}
+
+func divide(a, b int) (int, error) {
+        if b == 0 {
+                return 0, &DivideError{Dividend: a, Divisor: b}
+        }
+        return a / b, nil
+}
+```
+从 Go 1.13 开始，errors 包引入了 errors.Is 和 errors.As 用于处理错误链
+``` go
+//errors.Is 检查某个错误是否是特定错误或由该错误包装而成
+package main
+
+import (
+        "errors"
+        "fmt"
+)
+
+var ErrNotFound = errors.New("not found")
+
+func findItem(id int) error {
+        return fmt.Errorf("database error: %w", ErrNotFound)
+}
+
+func main() {
+        err := findItem(1)
+        if errors.Is(err, ErrNotFound) {
+                fmt.Println("Item not found")
+        } else {
+                fmt.Println("Other error:", err)
+        }
+}
+```
+``` go
+//errors.As 将错误转换为特定类型以便进一步处理
+package main
+
+import (
+        "errors"
+        "fmt"
+)
+
+type MyError struct {
+        Code int
+        Msg  string
+}
+
+func (e *MyError) Error() string {
+        return fmt.Sprintf("Code: %d, Msg: %s", e.Code, e.Msg)
+}
+
+func getError() error {
+        return &MyError{Code: 404, Msg: "Not Found"}
+}
+
+func main() {
+        err := getError()
+        var myErr *MyError
+        if errors.As(err, &myErr) {
+                fmt.Printf("Custom error - Code: %d, Msg: %s\n", myErr.Code, myErr.Msg)
+        }
+}
+```
+* panic 和 recover：处理不可恢复的严重错误
+``` go
+//panic 用于处理不可恢复的错误，recover 用于从 panic 中恢复
+/*
+panic:
+    导致程序崩溃并输出堆栈信息。
+    常用于程序无法继续运行的情况。
+recover:
+    捕获 panic，避免程序崩溃。
+ */
+package main
+
+import "fmt"
+
+func safeFunction() {
+        defer func() {
+                if r := recover(); r != nil {
+                        fmt.Println("Recovered from panic:", r)
+                }
+        }()
+        panic("something went wrong")
+}
+
+func main() {
+        fmt.Println("Starting program...")
+        safeFunction()
+        fmt.Println("Program continued after panic")
+}
+/*
+输出：
+Starting program...
+Recovered from panic: something went wrong
+Program continued after panic
+ */
+```
+
+# 并发
+Go 语言支持并发，通过 goroutines 和 channels 提供了一种简洁且高效的方式来实现并发
+
+Goroutines：
+Go 中的并发执行单位，类似于轻量级的线程
+* Goroutine 的调度由 Go 运行时管理，用户无需手动分配线程
+* 使用 go 关键字启动 Goroutine
+* Goroutine 是非阻塞的，可以高效地运行成千上万个 Goroutine
+
+Channel：
+Go 中用于在 Goroutine 之间通信的机制
+* 支持同步和数据共享，避免了显式的锁机制
+* 使用 chan 关键字创建，通过 <- 操作符发送和接收数据
+
+Scheduler（调度器）：
+Go 的调度器基于 GMP 模型，调度器会将 Goroutine 分配到系统线程中执行，并通过 M 和 P 的配合高效管理并发
+* G：Goroutine。
+* M：系统线程（Machine）
+* P：逻辑处理器（Processor）
+
+## WaitGroup
+sync.WaitGroup 用于等待多个 Goroutine 完成
+``` go
+package main
+
+import (
+        "fmt"
+        "sync"
+)
+
+func worker(id int, wg *sync.WaitGroup) {
+        defer wg.Done() // Goroutine 完成时调用 Done()
+        fmt.Printf("Worker %d started\n", id)
+        fmt.Printf("Worker %d finished\n", id)
+}
+
+func main() {
+        var wg sync.WaitGroup
+
+        for i := 1; i <= 3; i++ {
+                wg.Add(1) // 增加计数器
+                go worker(i, &wg)
+        }
+
+        wg.Wait() // 等待所有 Goroutine 完成
+        fmt.Println("All workers done")
+}
+```
+
+## Buffered Channel
+创建有缓冲的 Channel
+``` go
+ch := make(chan int, 2)
+```
+
+## Context：
+用于控制 Goroutine 的生命周期
+``` go
+context.WithCancel、context.WithTimeout
+```
+
+## Mutex 和 RWMutex
+sync.Mutex 提供互斥锁，用于保护共享资源
+``` go 
+var mu sync.Mutex
+mu.Lock()
+// critical section
+mu.Unlock()
+```
+
+## 协程使用示例
+``` go
+//通过两个 goroutine 来计算数字之和，在 goroutine 完成计算后，它会计算两个结果的和
+package main
+
+import "fmt"
+
+func sum(s []int, c chan int) {
+    sum := 0
+    for _, v := range s {
+        sum += v
+    }
+    c <- sum // 把 sum 发送到通道 c
+}
+
+func main() {
+    s := []int{7, 2, 8, -9, 4, 0}
+
+    c := make(chan int)
+    go sum(s[:len(s)/2], c)
+    go sum(s[len(s)/2:], c)
+    x, y := <-c, <-c // 从通道 c 中接收
+
+    fmt.Println(x, y, x+y)
+}
+```
+
+# go常用命令
+* go mod init
+初始化go mod， 生成go.mod文件，后可接参数指定 module 名，上面已经演示过。
+* go mod download
+手动触发下载依赖包到本地cache（默认为$GOPATH/pkg/mod目录）
+* go mod graph
+打印项目的模块依赖结构
+* go mod tidy
+添加缺少的包，且删除无用的包
+* go mod verify
+校验模块是否被篡改过
+* go mod why
+查看为什么需要依赖
+* go mod vendor
+导出项目所有依赖到vendor下
+* go mod edit
+编辑go.mod文件，接 -fmt 参数格式化 go.mod 文件，接 -require=golang.org/x/text 添加依赖，接 -droprequire=golang.org/x/text 删除依赖，详情可参考 go help mod edit
+* go list -m -json all
+以 json 的方式打印依赖详情 
+* go get -u
+将会升级到最新的次要版本或者修订版本(x.y.z, z是修订版本号， y是次要版本号)
+* go get -u=patch
+将会升级到最新的修订版本
+* go get package@version
+将会升级到指定的版本号version
+
+# 常用包
+* 雪花算法
+github.com/bwmarrin/snowflak 
+
+* redis
+github.com/go-redis/redis
+
+* sqlserver
+github.com/microsoft/go-mssqldb
+
+* mysql
+github.com/go-sql-driver/mysql
+
+* protobuf 
+github.com/golang/protobuf已被弃用
+google.golang.org/protobuf
+https://developer.aliyun.com/article/1169702
+
+* zap
+zap 是 uber 开源的一个高性能，结构化，分级记录的日志记录包。
+github.com/uber-go/zap
+
+# vscode 插件
+* FittenCode
+智能代码生成
+
+* GO
+GGO语言插件
+
+* Material Icon Theme
+文件图标
+
+* Remote SSH
+vscode 远程链接linux开发
+
+* 其它插件
+https://www.cnblogs.com/xuweihui/p/18181582
+
+# 参考资料
+* Go中文文档
+http://go.p2hp.com/go.dev/doc/
+* 标准包文档
+https://pkg.go.dev/std
+* GO圣经(中文版)
+https://gopl-zh.codeyu.com/
+* GO高级编程
+https://chai2010.cn/advanced-go-programming-book/
+* go语法糖
+https://blog.csdn.net/kevin_tech/article/details/125954995
+* dll生成
+https://www.cnblogs.com/Kingram/p/12088087.html
+* 多路复用(grpc、http等共用端口)
+https://github.com/soheilhy/cmux
+* protobuf介绍
+https://www.jb51.net/jiaoben/3108797gd.htm
+* 分布式框架
+https://github.com/dobyte/due
+* 文件读写
+https://www.cnblogs.com/dibtp/p/18083986
+
+
+# 问题记录
+* GOPATH目录下有go.mod时,子目录下工程执行go mod tidy会提示go: go.mod file not found in current directory or any parent directory
+解决方法:
+删除该go.mod
+
+* binary.Write注意事项
+1、必须使用指定长度类型，例如int是不允许的，必须int32等
+2、结构体unsafe.Sizeof是会进行内存对齐的，但是binary.Write结果是无内存对齐的，所以写入时需要保存长度信息
+
+* import "C"提示找不到go file
+开启cgo
+go env -w CGO_ENABLED=1
+
+* go run a.go只会查找a.go,涉及多文件时命令:
+go run a.go b.go c.go ...
+
+* GOPROXY代理
+gov1.13默认为https://proxy.golang.org
+国内建议
+go env -w GOPROXY=https://goproxy.cn,direct
