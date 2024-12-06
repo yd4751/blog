@@ -487,14 +487,18 @@ num, _ := strconv.ParseFloat(str, 64)
 // 浮点转字符串
 num := 3.14
 str := strconv.FormatFloat(num, 'f', 2, 64)
+```
 
-//接口类型转换:类型断言、类型转换
-
-// 类型断言:用于将接口类型转换为指定类型 语法:value.(type) 或 value.(T)
+## 接口类型转换
+### 类型断言
+用于将接口类型转换为指定类型 语法:value.(type) 或 value.(T)
+``` go
 var i interface{} = "Hello, World"
 str, ok := i.(string)
-
-// 类型转换:用于将一个接口类型的值转换为另一个接口类型 语法:T(value)
+```
+### 类型转换
+用于将一个接口类型的值转换为另一个接口类型 语法:T(value)
+``` go
 // 定义一个接口 Writer
 type Writer interface {
     Write([]byte) (int, error)
@@ -517,8 +521,9 @@ sw.str = "Hello, World"
 // 打印 StringWriter 的字段值
 fmt.Println(sw.str)
 ```
+
 # 错误处理
-* 错误处理采用显式返回错误的方式，而非传统的异常处理机制
+错误处理采用显式返回错误的方式，而非传统的异常处理机制 
 主要围绕以下机制展开:
 * error 接口：标准的错误表示。
 ``` go
@@ -653,27 +658,27 @@ Program continued after panic
 ```
 
 # 并发
-Go 语言支持并发，通过 goroutines 和 channels 提供了一种简洁且高效的方式来实现并发
+Go 语言支持并发，通过 goroutines 和 channels 提供了一种简洁且高效的方式来实现并发 
 
-Goroutines：
+Goroutines： 
 Go 中的并发执行单位，类似于轻量级的线程
 * Goroutine 的调度由 Go 运行时管理，用户无需手动分配线程
 * 使用 go 关键字启动 Goroutine
 * Goroutine 是非阻塞的，可以高效地运行成千上万个 Goroutine
 
-Channel：
-Go 中用于在 Goroutine 之间通信的机制
+Channel： 
+Go 中用于在 Goroutine 之间通信的机制 
 * 支持同步和数据共享，避免了显式的锁机制
 * 使用 chan 关键字创建，通过 <- 操作符发送和接收数据
 
-Scheduler（调度器）：
-Go 的调度器基于 GMP 模型，调度器会将 Goroutine 分配到系统线程中执行，并通过 M 和 P 的配合高效管理并发
+Scheduler（调度器）： 
+Go 的调度器基于 GMP 模型，调度器会将 Goroutine 分配到系统线程中执行，并通过 M 和 P 的配合高效管理并发 
 * G：Goroutine。
 * M：系统线程（Machine）
 * P：逻辑处理器（Processor）
 
 ## WaitGroup
-sync.WaitGroup 用于等待多个 Goroutine 完成
+sync.WaitGroup 用于等待多个 Goroutine 完成 
 ``` go
 package main
 
@@ -837,22 +842,22 @@ https://www.cnblogs.com/dibtp/p/18083986
 
 
 # 问题记录
-* GOPATH目录下有go.mod时,子目录下工程执行go mod tidy会提示go: go.mod file not found in current directory or any parent directory
+* GOPATH目录下有go.mod时,子目录下工程执行go mod tidy会提示go: go.mod file not found in current directory or any parent directory 
 解决方法:
 删除该go.mod
 
-* binary.Write注意事项
-1、必须使用指定长度类型，例如int是不允许的，必须int32等
-2、结构体unsafe.Sizeof是会进行内存对齐的，但是binary.Write结果是无内存对齐的，所以写入时需要保存长度信息
+* binary.Write注意事项 
+1、必须使用指定长度类型，例如int是不允许的，必须int32等 
+2、结构体unsafe.Sizeof是会进行内存对齐的，但是binary.Write结果是无内存对齐的，所以写入时需要保存长度信息 
 
-* import "C"提示找不到go file
-开启cgo
-go env -w CGO_ENABLED=1
+* import "C"提示找不到go file 
+开启cgo 
+go env -w CGO_ENABLED=1 
 
-* go run a.go只会查找a.go,涉及多文件时命令:
-go run a.go b.go c.go ...
+* go run a.go只会查找a.go,涉及多文件时命令: 
+go run a.go b.go c.go ... 
 
-* GOPROXY代理
-gov1.13默认为https://proxy.golang.org
+* GOPROXY代理 
+gov1.13默认为https://proxy.golang.org 
 国内建议
 go env -w GOPROXY=https://goproxy.cn,direct
