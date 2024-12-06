@@ -302,11 +302,11 @@ const (
 <html>
 <table class="reference">
 <tbody><tr><th style="width:35%">语句</th><th>描述</th></tr>
-<tr><td><a href="/go/go-if-statement.html" title="Go if 语句">if 语句</a></td><td><b>if 语句</b> 由一个布尔表达式后紧跟一个或多个语句组成。</td></tr>
-<tr><td><a href="/go/go-if-else-statement.html" title="Go if...else 语句">if...else 语句</a></td><td><b>if 语句</b> 后可以使用可选的 <b>else 语句</b>, else 语句中的表达式在布尔表达式为 false 时执行。</td></tr>
-<tr><td><a href="/go/go-nested-if-statements.html" title="Go if 嵌套语句"> if 嵌套语句</a></td><td>你可以在 <b>if</b> 或 <b>else if</b> 语句中嵌入一个或多个 <b>if</b> 或 <b>else if</b> 语句。</td></tr>
-<tr><td><a href="/go/go-switch-statement.html" title="Go switch 语句">switch 语句</a></td><td><b>switch</b> 语句用于基于不同条件执行不同动作。</td></tr>
-<tr><td><a href="/go/go-select-statement.html" title="Go select 语句">select 语句</a></td><td><b>select</b> 语句类似于 <b>switch</b> 语句，但是select会随机执行一个可运行的case。如果没有case可运行，它将阻塞，直到有case可运行。</td></tr>
+<tr><td><a title="Go if 语句">if 语句</a></td><td><b>if </b> 由一个布尔表达式后紧跟一个或多个语句组成。</td></tr>
+<tr><td><a title="Go if...else 语句">if...else </a></td><td><b>if 语句</b> 后可以使用可选的 <b>else 语句</b>, else 语句中的表达式在布尔表达式为 false 时执行。</td></tr>
+<tr><td><a title="Go if 嵌套语句"> if </a></td><td>你可以在 <b>if</b> 或 <b>else if</b> 语句中嵌入一个或多个 <b>if</b> 或 <b>else if</b> 语句。</td></tr>
+<tr><td><a title="Go switch 语句">switch </a></td><td><b>switch</b> 语句用于基于不同条件执行不同动作。</td></tr>
+<tr><td><a title="Go select 语句">select </a></td><td><b>select</b> 语句类似于 <b>switch</b> 语句，但是select会随机执行一个可运行的case。如果没有case可运行，它将阻塞，直到有case可运行。</td></tr>
 </tbody></table>
 
 <blockquote><p>注意：Go 没有三目运算符，所以不支持 <strong>?:</strong> 形式的条件判断。</p></blockquote>
@@ -323,12 +323,12 @@ const (
 </thead>
 <tbody>
 <tr>
-<td><a href="go-for-loop.html">for 循环</a> </td>
+<td><a>for</a> </td>
 <td> 重复执行语句块</td>
 </tr>
 <tr>
-<td><a href="/go/go-nested-loops.html">循环嵌套</a>  </td>
-<td> 在 for 循环中嵌套一个或多个 for 循环</td>
+<td><a>循环嵌套</a>  </td>
+<td> 在 for 循环中嵌套一个或多个 for</td>
 </tr>
 </tbody>
 </table>
@@ -348,15 +348,15 @@ const (
 </thead>
 <tbody>
 <tr>
-<td><a href="/go/go-break-statement.html">break 语句</a> </td>
-<td> 经常用于中断当前 for 循环或跳出 switch 语句</td>
+<td><a>break</a> </td>
+<td> 经常用于中断当前 for 循环或跳出 switch </td>
 </tr>
 <tr>
-<td><a href="/go/go-continue-statement.html">continue 语句</a> </td>
+<td><a>continue</a> </td>
 <td> 跳过当前循环的剩余语句，然后继续进行下一轮循环。</td>
 </tr>
 <tr>
-<td><a href="/go/go-goto-statement.html">goto 语句</a> </td>
+<td><a>goto</a> </td>
 <td> 将控制转移到被标记的语句。</td>
 </tr>
 </tbody>
