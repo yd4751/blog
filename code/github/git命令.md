@@ -218,3 +218,11 @@ git fetch 和 git pull 之间的区别：
     git stash pop                                  // 恢复最近一次保存的临时修改
     git stash clear                                // 丢弃所有保存的临时修改
 ```
+
+# 问题记录
+1、git没开代理push失败
+代理设置:
+地址用的是clash的局域网代理
+git config --global http.proxy 127.0.0.1:7890
+git config --global https.proxy 127.0.0.1:7890
+以没开是怎么成功的？
