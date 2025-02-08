@@ -197,3 +197,7 @@ VideoControl：增强T2V模型的可控能力，通过插入条件适配器模�
 提供摸鱼日历设定、图片视频搜索、自动群发、自动回复、自动拉人入群等功能。
 目前只能在Windows系统运行，且对微信版本有要求。
 内置了许多娱乐功能，适合有娱乐精神的用户。
+
+# 克隆声音
+[MockingBird](https://github.com/babysor/MockingBird):
+MockingBird是一个基于AI技术的开源拟声项目，它能在极短的时间内（通常只需5秒）克隆用户的声音，并生成任意语音内容。该项目不仅支持中文普通话，还兼容多种操作系统，包括Windows、Mac和Linux。
