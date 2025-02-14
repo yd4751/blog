@@ -3,6 +3,10 @@
 * https://go.dev/dl/
 * https://golang.google.cn/dl/
 
+ubuntu下安装
+sudo apt-get install golang-go
+delve
+compile
 # hello world
 ```go
 package main
@@ -862,3 +866,7 @@ go run a.go b.go c.go ...
 gov1.13默认为https://proxy.golang.org  
 国内建议
 go env -w GOPROXY=https://goproxy.cn,direct
+
+* 远程F5直接运行go时，会报错
+错误：go: no such tool "compile"
+解决方法：安装code runner插件

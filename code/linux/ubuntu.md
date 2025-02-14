@@ -21,7 +21,7 @@ lsb_release -a
 
 # clash安装
 ``` shell
-#clash地址，选择arm64版本下载
+#clash地址，选择amd64版本下载
 https://github.com/DustinWin/proxy-tools/releases/tag/Clash-Premium
 
 #此方式下载的是base64加密的数据，需要解密后拷贝到.yaml文件中
@@ -75,6 +75,8 @@ Type=forking
 TimeoutSec=0
 # 配置重新启动服务之前的睡眠时间,重启频率,比如某次异常后，等待5(s)再进行启动，默认值0.1(s)
 #RestartSec=60
+#设置环境变量
+#Environment=MY_VAR1=value1
 # 这是服务运行的具体执行命令,可执行执行脚本的绝对路径,即对应的service start/stop/reload
 ExecStart=/home/ubuntu/installer/nacos/bin/startup.sh -m standalone
 ExecReload=/home/ubuntu/installer/nacos/bin/shutdown.sh
