@@ -162,4 +162,21 @@ wget [option] [URL]
     -load-cookies filename #加载
     -save-cookies filename #保存
     
+#软件包管理
+apt 
+    update   #更新软件源列表
+    upgrade  # 仅升级包，保留旧版本依赖
+    full-upgrade  # 升级包并移除废弃依赖
+    install <包名>           # 安装单个包
+    install <包1> <包2>      # 同时安装多个包‌
+    remove <包名>           # 移除软件包但保留配置文件
+    purge <包名>            # 彻底删除软件包及其配置文件‌
+    search <关键词>             # 搜索仓库中匹配的包名
+    show <包名>                 # 查看包的版本、依赖、大小等详细信息‌
+    autoremove     # 删除自动安装且不再使用的依赖
+    autoclean      # 清理旧版本软件包缓存（保留最新版本）‌
+    list --installed     # 显示所有已安装的包
+    list --all-versions  # 查看所有已安装包的版本信息‌
+    install <包名>=<版本号>  # 安装特定版本
+    install -y <包名>       # 自动确认操作
 ```
