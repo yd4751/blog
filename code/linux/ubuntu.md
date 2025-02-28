@@ -24,12 +24,18 @@ lsb_release -a
 #clash地址，选择amd64版本下载
 https://github.com/DustinWin/proxy-tools/releases/tag/Clash-Premium
 
+#默认yaml路径
+~/.config/clash/config.yaml
+
 #此方式下载的是base64加密的数据，需要解密后拷贝到.yaml文件中
 wget -O config.yaml https://xxx/xxx 
 
 #配置代理,clash默认使用7890端口
 export http_proxy=http://127.0.0.1:7890
 export https_proxy=http://127.0.0.1:7890
+
+#有个问题
+ubuntu不知道怎么使用订阅(下载下来的内容是base64加密的，解密后还有base64加密内容),windows下可以直接用，不知道ubuntu命令是要如何操作
 ```
 
 # 自定义服务
