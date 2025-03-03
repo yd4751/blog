@@ -18,6 +18,14 @@ lsb_release -a
 #Release:	24.04
 #Codename:	noble
 ```
+# 查看显卡型号
+``` shell
+nvidia-smi -L  # 输出示例：`GPU 0: NVIDIA GeForce RTX 3050`‌
+nvidia-smi  # 显示显存、驱动版本、温度等详细信息‌
+sudo lshw -C display  # 输出显卡制造商、型号、驱动等详细信息‌
+sudo lshw -C display | grep -i product  # 直接提取型号信息‌
+
+```
 
 # clash安装
 ``` shell
@@ -91,4 +99,31 @@ ExecStop=/home/ubuntu/installer/nacos/bin/shutdown.sh
 # 这里你没太大要求可以不管
 WantedBy=multi-user.target
 
+```
+
+# 驱动安装
+``` shell
+#禁用 Nouveau 驱动
+sudo vi /etc/modprobe.d/blacklist-nouveau.conf 
+#添加以下内容，保存退出
+blacklist nouveau  
+options nouveau modeset=0  
+#更新内核配置
+sudo update-initramfs -u
+#重启系统并验证
+sudo reboot  
+lsmod | grep nouveau  # 若无输出则成功
+#安装编译依赖
+sudo apt update 
+sudo apt install gcc make libelf-dev -y     
+#卸载旧驱动（如有）
+sudo apt purge nvidia-*
+#关闭图形界面服务(如有)
+sudo service lightdm stop
+#安装
+sudo chmod +x NVIDIA-Linux-*.run # 添加可执行权限 ‌
+sudo ./NVIDIA-Linux-*.run --no-opengl-files --no-x-check  # 关键参数避免冲突
+# ‌重启并验证驱动
+sudo reboot
+nvidia-smi  # 显示 GPU 信息即成功
 ```

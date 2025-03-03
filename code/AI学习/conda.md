@@ -12,6 +12,8 @@ https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/ #清华镜像
 注意：
 Miniconda‌3默认绑定 ‌Python 3.x‌ 版本，安装后直接提供 Python 3 环境‌
 Miniconda‌默认绑定 ‌Python 2.x‌ 版本，安装后直接提供 Python 2 环境‌
+国内镜像容易封IP，有代理直接官网下就行
+
 #验证安装
 conda --version  # 查看版本
 
@@ -20,7 +22,8 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
 conda config --set show_channel_urls yes  # 显示下载源地址
 
-
+# 升级
+conda update conda
 ```
 
 # 环境管理
@@ -76,4 +79,8 @@ conda list‌
 * 混合安装风险‌：避免在 Conda 环境中混用 pip 安装包，可能导致依赖冲突‌
 
 # 问题
-* CondaHTTPError: HTTP 403 FORBIDDEN 
+* CondaHTTPError: HTTP 403 FORBIDDEN   
+获取http返回会发现提示:"我们检测到您所在的子网和/或所使用的客户端存在大量下载某些较大二进制文件的行为，为保证用户的正常使用，我们阻断了此类请求"
+这是镜像站把ip封了
+1、换源或者切换网络一般可以解决
+2、我直接用代理了，删除所有镜像源配置
