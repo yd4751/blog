@@ -39,6 +39,9 @@ conda activate myenv  # Windows/Linux/macOS 通用‌
 
 #退出
 conda deactivate‌
+exit
+quit
+关闭命令行
 
 #导出到yml
 conda env export > environment.yml  # 包含完整包信息‌
@@ -71,6 +74,25 @@ conda remove numpy‌
 conda update numpy‌
 #列出已当前环境已安装包
 conda list‌
+
+```
+
+# 卸载
+``` shell
+#1
+ps aux | grep conda | awk '{print $2}' | xargs kill -9 # 杀死所有 conda 进程
+conda install anaconda-clean  # 安装清理工具 
+anaconda-clean --yes          # 删除所有 conda 配置文件（备份至 ~/.anaconda_backup）‌
+#2
+sudo rm -rf ~/anaconda3          # 默认安装路径
+sudo rm -rf ~/miniconda3         # Miniconda 路径
+#3
+rm -rf ~/.condarc ~/.conda ~/.continuum  # 删除隐藏文件
+#4
+删除~/.bashrc中anaconda相关配置
+#删除所有虚拟环境
+conda env list                   # 列出所有环境
+conda env remove --name <env>    # 逐个删除
 
 ```
 

@@ -27,6 +27,11 @@ sudo lshw -C display | grep -i product  # 直接提取型号信息‌
 
 ```
 
+# 环境配置
+``` shell
+#全局环境配置 重启生效
+sudo vi /etc/environment
+```
 # clash安装
 ``` shell
 #clash地址，选择amd64版本下载
@@ -99,6 +104,16 @@ ExecStop=/home/ubuntu/installer/nacos/bin/shutdown.sh
 # 这里你没太大要求可以不管
 WantedBy=multi-user.target
 
+#
+系统级服务：/etc/systemd/system/（优先级最高）‌
+软件包默认配置：/usr/lib/systemd/system/‌
+#Type字段说明
+‌simple‌：默认类型，服务进程不会fork，直接在前台运行，适用于不需要后台化的服务。
+‌forking‌：服务进程会fork，父进程退出后子进程成为主进程，需指定PIDFile。
+‌oneshot‌：执行一次性任务，完成后退出，常用于初始化脚本。
+‌dbus‌：服务需要在D-Bus上获取一个名称后，才视为启动成功。
+‌notify‌：服务通过sd_notify()函数发送通知，告知systemd已就绪。
+‌idle‌：延迟服务启动，直到其他任务完成，适合低优先级服务
 ```
 
 # 驱动安装
@@ -126,4 +141,14 @@ sudo ./NVIDIA-Linux-*.run --no-opengl-files --no-x-check  # 关键参数避免�
 # ‌重启并验证驱动
 sudo reboot
 nvidia-smi  # 显示 GPU 信息即成功
+```
+
+# 问题记录
+* pip install torch 报错 error: externally-managed-environment
+``` shell
+此错误表示当前 Python 环境由系统包管理器（如 apt、pacman 或 brew）严格管理，直接使用 pip 安装可能破坏系统依赖一致性‌
+解决:
+python3 -m venv myenv         # 创建虚拟环境目录
+source myenv/bin/activate    # 激活（Linux/macOS）
+pip install torch
 ```

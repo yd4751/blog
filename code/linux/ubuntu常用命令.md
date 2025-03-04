@@ -94,6 +94,29 @@ kill
     -p 打印进程的状态，不发送信号。
     -0 检查进程是否存在，不发送信号。如果进程存在，则命令返回成功；否则返回失败。
 
+#服务控制
+systemctl
+    -t：指定 Unit 类型（如 service、socket）‌
+    -a：显示所有单元（包括非活动状态）
+    --state：过滤特定状态的单元‌
+
+systemctl start <服务名>    # 启动服务‌
+systemctl stop <服务名>     # 停止服务‌
+systemctl restart <服务名>  # 重启服务‌
+systemctl reload <服务名>  # 重新加载配置（不中断服务）‌
+systemctl status <服务名>  # 查看服务状态（含日志摘要）‌
+systemctl list-units       # 显示所有活跃单元‌
+systemctl list-dependencies <服务名>  # 查看服务依赖关系‌
+systemctl enable <服务名>   # 启用开机自启‌
+systemctl disable <服务名>  # 禁用开机自启‌
+systemctl is-enabled <服务名>  # 检查是否已启用自启‌
+systemctl reboot    # 重启系统‌
+systemctl poweroff  # 关机‌
+systemctl suspend   # 挂起（睡眠模式）‌
+
+系统级服务：/etc/systemd/system/（优先级最高）‌
+软件包默认配置：/usr/lib/systemd/system/‌
+
 ###########################################其它命令###########################################
 #查看当前目录的绝对路径
 pwd #显示当前所在目录的绝对路径
@@ -193,4 +216,27 @@ apt
     list --all-versions  # 查看所有已安装包的版本信息‌
     install <包名>=<版本号>  # 安装特定版本
     install -y <包名>       # 自动确认操作
+
+#软件包管理
+snapd
+    version  # 显示 snapd 和系统版本‌
+    set system proxy.http="http://代理IP:端口"  # 全局生效‌:ml-citation{ref="5" data="citationList"}
+    set system proxy.https="http://代理IP:端口"
+    find <关键词> #从 Snap Store 查找软件
+    install <应用名> #安装指定应用
+    list #显示所有已安装
+    refresh <应用名> #更新单个应用
+    refresh #更新全部应用
+    remove <应用名> #删除指定应用‌
+    info <应用名> #显示应用描述、版本及权限配置‌
+    run <应用名> #启动已安装的 Snap 应用‌
+    --channel=候选通道  #通道控制  sudo snap install <应用名> --channel=候选通道
+    connections <应用名>  # 查看应用的接口权限‌
+    disconnect <应用名>:<接口>  # 禁用特定权限（如摄像头）‌
+    revert <应用名>      # 恢复到上一个版本‌
+##应用数据路径
+/var/snap/<应用名>‌
+##用户数据路径
+~/snap/<应用名>‌
 ```
+
