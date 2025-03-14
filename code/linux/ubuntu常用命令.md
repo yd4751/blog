@@ -30,7 +30,8 @@ df -h #以人类可读的方式（如KB、MB、GB等）显示磁盘使用情况
 df -h --block-size=g #以GB为单位显示磁盘使用情况
 #查看目录占用空间
 du -sh /path/to/directory #显示指定目录的总大小
-
+    -s #仅显示总大小，不列出子目录
+    -h #以易读格式显示大小（KB/MB/GB）
 ###########################################用户管理###########################################
 #查看当前用户
 whoami：显示当前登录的用户名。
@@ -117,6 +118,9 @@ systemctl suspend   # 挂起（睡眠模式）‌
 系统级服务：/etc/systemd/system/（优先级最高）‌
 软件包默认配置：/usr/lib/systemd/system/‌
 
+#老版服务控制
+service <服务名> start|stop|restart|reload|status # 启动、停止、重启、重新加载配置、查看服务状态
+
 ###########################################其它命令###########################################
 #查看当前目录的绝对路径
 pwd #显示当前所在目录的绝对路径
@@ -131,8 +135,37 @@ ip a #显示当前系统的IP地址信息。
 #关机和重启
 sudo shutdown -h now #立即关闭系统。
 sudo shutdown -r now #立即重启系统。
+#防火墙
+ufw
+    ufw enable          # 启用防火墙
+    systemctl enable ufw  # 设置开机自启
+    ufw status          # 显示当前规则状态（如active/inactive）‌
+    ufw status verbose  # 显示默认策略及日志级别
+    ufw status numbered # 显示带编号的规则列表
+    ufw default deny incoming  # 默认拒绝所有入站流量
+    ufw default allow outgoing # 默认允许所有出站流量
+    ufw allow 22/tcp          # 开放TCP 22端口
+    ufw allow 80/http         # 按服务名称开放端口（如HTTP）‌
+    ufw deny 3306/tcp         # 拒绝TCP 3306端口
+    ufw allow from 192.168.0.100     # 允许特定IP访问所有端口
+    ufw deny from 192.168.0.0/24     # 拒绝整个子网访问
+    ufw delete 3             # 删除编号为3的规则 
+    ufw reset                # 重置所有规则并禁用防火墙
+    ufw app list             # 查看支持的应用配置文件
+    ufw allow OpenSSH        # 允许OpenSSH服务
+    ufw logging on           # 开启日志记录
+    ufw logging off          # 关闭日志记录
+
+
+
+
+
+
 
 ###########################################网络管理###########################################
+#实时网络流量监控
+nload #实时显示当前网络上传、下载速度。按q键退出
+
 #用来查看系统的网络连接、路由表、接口统计等信息。
 netstat 
     -t：显示TCP连接
