@@ -759,6 +759,44 @@ func main() {
 }
 ```
 
+# plugin使用示例(目前不支持windows)
+动态库库编译命令
+go build -buildmode=plugin -o gamelogic.so main.go
+
+``` go
+type IGameLogic interface {
+	Init()
+	Reset()
+	Print()
+}
+func main() {
+
+	pluginPath := "libs/demo/gamelogic.so"
+	p, err := plugin.Open(pluginPath)
+	if err != nil {
+                fmt.Printf(err.Error())
+                return
+	}
+
+	// 导出函数变量
+	f1, err := p.Lookup("New")
+	if err != nil {
+		fmt.Printf(err.Error())
+		return
+	}
+
+	gameLogic := f1.(func() IGameLogic)()
+	i, ok := gameLogic.(IGameLogic)
+	if !ok {
+		fmt.Printf("f1 does not implement MyInterface")
+		return
+	}
+	i.Init()
+	i.Reset()
+	i.Print()
+}
+```
+
 # go常用命令
 * go mod init
 初始化go mod， 生成go.mod文件，后可接参数指定 module 名，上面已经演示过。
