@@ -1,37 +1,67 @@
+# 名词解释
+## ‌Vue
+Progressive JavaScript 框架，适用于构建用户界面，支持组件化开发和响应式数据绑定
+## ‌Vite
+下一代前端构建工具，基于原生 ES Module 实现极速热更新，支持 Vue/React 等框架，默认集成现代前端生态
+## 包管理工具
+### npm
+Node.js 官方包管理器，生态最广但安装速度较慢
+适用场景: 兼容性要求高的传统项目
+### yarn
+并行下载+离线缓存，解决 npm 性能问题，兼容 npm 命令
+适用场景: 大型项目
+### pnpm
+通过硬链接共享依赖，节省磁盘空间，安装速度最快
+适用场景: 多项目协作或磁盘敏感场景
+### cnpm
+淘宝镜像源，国内下载速度快，但不支持 lock 文件
+适用场景: 国内网络环境下的快速安装
+
+### 注意
+推荐使用 pnpm 或 yarn 初始化项目，避免 npm 的嵌套依赖问题
+
 # 安装
-1、在 Vue.js 的官网上直接下载最新版本, 并用 <script> 标签引入
-https://unpkg.com/vue@3.5.13/dist/vue.global.js
+安装 Node.js,需安装 LTS 版本（推荐 v18+），安装后自带 npm 工具
+node -v  # 检查 Node 版本
+npm -v   # 检查 npm 版本
 
-2、npm
+配置淘宝镜像源
+npm config set registry https://registry.npmmirror.com
+
+使用 cnpm 替代 npm
+npm install -g cnpm --registry=https://registry.npmmirror.com
+
+npm:
+npm create ...
+create 和 innit 是 init 的别名，三者完全等价‌
+
+# vue版本
+
+# 项目创建
+## Vue CLI 项目创建
 ``` shell
-#包管理器
-npm
-yarn
-pnpn
+npm install -g @vue/cli          # 全局安装脚手架
+vue create my-project            # 交互式创建项目
+cd my-project && npm run serve   # 启动开发服务器
 
-# 查看版本
-npm -v
-2.3.0
-
-#升级 npm
-cnpm install npm -g
-
-# 升级或安装 cnpm  
-#cnpm：是一个完整 npmjs.org 镜像，可以用此代替官方版本
-npm install cnpm -g
-
-#安装依赖并启动开发服务器
+```
+## Vite 项目创建
+``` shell
+npm init vue@latest
+npm create vite@latest my-vue-app --template vue
+#pnpm create vite@latest --template vue-ts
+cd my-vue-app
 npm install
 npm run dev
 
-#Vite 是一个 web 开发构建工具
-npm init vite-app <project-name>
+```
 
-# 安装 Vue CLI ,Vue CLI提供了一整套标准化的工具和预设配置，使得开发者可以快速启动和配置项目,正确安装Vue CLI是使用Vue命令的第一步
-npm install -g @vue/cli
-
-# vite
-npm install -g vite
+## Vue 2 项目特殊处理
+``` shell
+#Vite 默认不支持 Vue 2，需手动配置,需额外修改 vite.config.js 适配 Vue 2 插件‌
+npm init vite@latest vite-vue2 --template vanilla
+cd vite-vue2
+npm install vue@2 vue-router@3 vuex@3 -S
 ```
 
 # vue和vite
@@ -44,34 +74,54 @@ npm install -g vite
 ‌Vite‌：在生产环境中，Vite会将所有的ES模块转换为可部署的代码，以便在现代浏览器中运行。因此，Vite可以与Vue一样用于构建生产级别的应用程序。        
 ‌Vue‌：在生产环境中，Vue和Vite之间没有太大的区别，都可以用于构建生产级别的应用程序。      
 
+# vite构建项目时可选框架
+## Vanilla
+* 纯原生JavaScript开发，无额外依赖
+* 完全掌控代码，适合性能敏感型小型项目
+* 需手动处理DOM更新和状态管理‌
+## Vue
+* 渐进式架构，支持选项式API和组合式API
+* 虚拟DOM优化，双向数据绑定(v-model)
+* 适用于中小型项目快速开发‌34
+* 生态包含Vue CLI、Pinia、Nuxt.js等‌
+## React
+* 基于虚拟DOM的组件化开发
+* JSX语法，单向数据流设计
+* 适合复杂单页应用，支持React Native跨平台‌
+## Preact
+* React的轻量级替代(仅3KB)
+* 兼容React API，性能更优
+* 适合嵌入式场景‌
+## Lit
+* 轻量级 Web Components 库（仅 5KB）
+* 基于原生 Web Components 标准扩展，提供响应式模板和组件化开发能力
+* 适合跨框架复用组件‌
+## Svelte
+* 编译时框架，无虚拟DOM开销
+* 响应式编程模型，代码量减少30%+
+* 适合高交互应用‌
+## Solid
+* 细粒度响应式更新，性能接近原生JS
+* 类似React语法但无虚拟DOM
+* 适合数据密集型应用‌
+## Qwik
+* 即时交互框架，极致启动速度
+* 服务端渲染优先，自动代码拆分
+* 适合内容型网站‌
+## Angular
+* 完整的MVC框架，强类型支持
+* 依赖注入和模块化设计
+* 适合大型企业级应用‌
+## Marko
+* HTML超集设计
+* 高性能SSR
+* 组件化开发
 
-# 创建vue项目,几种不同方式
-``` shell
-#npm init、create和innit，它们实际上是init命令的别名
-
-npm init vue@latest
-#中文提示，方便操作
-
-npm init vite@latest
-#可以搭建多种框架
-
-
-
-vue create my-project
-#vue-cli3.x的初始化方式，目前模板是固定的
-
-vue init webpack 项目名称
-#ue-cli2.x的初始化方式，可以使用github上面的一些模板来初始化项目，webpack是官方推荐的标准模板名
-
-vue ui
-#图形化界面，可以创建项目，可以选择模板，可以安装插件，可以预览效果
-```
-
-# 项目打包
-``` shell
-#执行完成后，会在 Vue 项目下会生成一个 dist 目录，该目录一般包含 index.html 文件及 static 目录，static 目录包含了静态文件 js、css 以及图片目录 images（如果有图片的话）
-npm run build
-```
+# 框架选择建议
+极致性能/轻量:	Vanilla/Preact  
+快速原型开发:	Vue/Svelte  
+复杂企业应用:	Angular/React  
+内容型网站:	Qwik/Nuxt.js(Vue生态)  
 
 # 初始项目目录说明
 ![预览](https://github.com/yd4751/blog/blob/main/img/1.png)
