@@ -1,7 +1,7 @@
 # 名词解释
-## ‌Vue
+## Vue
 Progressive JavaScript 框架，适用于构建用户界面，支持组件化开发和响应式数据绑定
-## ‌Vite
+## Vite
 下一代前端构建工具，基于原生 ES Module 实现极速热更新，支持 Vue/React 等框架，默认集成现代前端生态
 ## 包管理工具
 ### npm
@@ -35,8 +35,6 @@ npm:
 npm create ...
 create 和 innit 是 init 的别名，三者完全等价‌
 
-# vue版本
-
 # 项目创建
 ## Vue CLI 项目创建
 ``` shell
@@ -65,20 +63,20 @@ npm install vue@2 vue-router@3 vuex@3 -S
 ```
 
 # vue和vite
-‌Vite和Vue的主要区别在于构建和开发过程的不同。‌‌
+Vite和Vue的主要区别在于构建和开发过程的不同  
 
 构建速度和开发体验：    
-‌Vite‌：使用原生ES模块，在开发环境下不需要打包，可以直接运行源代码，提供了更快的启动和刷新速度。Vite将开发服务器和构建过程分离，只需构建一次，提高了开发的效率。     
-‌Vue‌：使用传统的Webpack构建方式，需要将所有代码打包成一个或多个文件，这在开发环境下需要重新打包，速度较慢。     
+Vite：使用原生ES模块，在开发环境下不需要打包，可以直接运行源代码，提供了更快的启动和刷新速度。Vite将开发服务器和构建过程分离，只需构建一次，提高了开发的效率。     
+Vue：使用传统的Webpack构建方式，需要将所有代码打包成一个或多个文件，这在开发环境下需要重新打包，速度较慢。     
 生成环境：      
-‌Vite‌：在生产环境中，Vite会将所有的ES模块转换为可部署的代码，以便在现代浏览器中运行。因此，Vite可以与Vue一样用于构建生产级别的应用程序。        
-‌Vue‌：在生产环境中，Vue和Vite之间没有太大的区别，都可以用于构建生产级别的应用程序。      
+Vite：在生产环境中，Vite会将所有的ES模块转换为可部署的代码，以便在现代浏览器中运行。因此，Vite可以与Vue一样用于构建生产级别的应用程序。        
+Vue：在生产环境中，Vue和Vite之间没有太大的区别，都可以用于构建生产级别的应用程序。      
 
 # vite构建项目时可选框架
 ## Vanilla
 * 纯原生JavaScript开发，无额外依赖
 * 完全掌控代码，适合性能敏感型小型项目
-* 需手动处理DOM更新和状态管理‌
+* 需手动处理DOM更新和状态管理‌  
 ## Vue
 * 渐进式架构，支持选项式API和组合式API
 * 虚拟DOM优化，双向数据绑定(v-model)
@@ -123,10 +121,20 @@ npm install vue@2 vue-router@3 vuex@3 -S
 复杂企业应用:	Angular/React  
 内容型网站:	Qwik/Nuxt.js(Vue生态)  
 
+# UI组件库
+
+## ‌Vue生态库
+* Vuetify：Material Design组件库，适用于Vue 2和Vue 3
+* Element：饿了么前端UI组件库，适用于Vue 2和Vue 3
+
+## React生态库
+* Ant Design：蚂蚁金服出品的React UI组件库，提供了丰富的基础组件和高级功能组件
+* Chakra UI‌：注重可访问性和响应式设计，支持暗黑模式，适合快速构建现代界面‌
+
 # 初始项目目录说明
-![预览](https://github.com/yd4751/blog/blob/main/img/1.png)
-![预览](https://github.com/yd4751/blog/blob/main/img/2.png)
-![预览](https://github.com/yd4751/blog/blob/main/img/3.png)
+![预览](https://github.com/yd4751/blog/blob/main/img/1.png?raw=true){target="_blank"}
+![预览](https://github.com/yd4751/blog/blob/main/img/2.png?raw=true){target="_blank"}
+![预览](https://github.com/yd4751/blog/blob/main/img/3.png?raw=true){target="_blank"}
 
 # vue示例
 ``` html
