@@ -1,0 +1,32 @@
+1、前期准备
+注册公众号
+开通开发者账号
+准备域名
+准备ssl证书
+准备云服务器
+构建后台服务程序
+
+考虑发布内容类别
+考虑引流方式
+
+
+云服务器
+腾讯云
+https://cloud.tencent.com/act/pro/double11-2025?fromSource=gwzcw.10165835.10165835.10165835&utm_medium=cpc&utm_id=gwzcw.10165835.10165835.10165835#TJ
+每日两场秒杀（上午10:00、下午15:00），爆款折扣享不停 38
+普通99一年
+
+阿里云
+https://www.aliyun.com/daily-act/ecs/activity_selection?spm=5176.29188366.J_Yf__cR0vPscRNH6gn2_yQ.16.748b3e4d49srv3&scm=20140722.M_10000011871.P_121.MO_2230-ID_10000011871-MID_10000011871-CID_0-ST_8726-PA_se@1022108959-V_1
+每天两场（上午10:00，下午15:00)，限量秒杀 38
+普通99一年
+
+百度云
+https://cloud.baidu.com/campaign/event/bigevent/index.html?track=d562e46efc9de9b317fbbfd8a0700ece6caf2f78e607bddf
+每日早上10点开启限量秒杀，数量有限，售完即止 19/36
+29/38需要抢，75可以直接买
+
+华为云
+活动36一年
+普通98一年
+
